@@ -130,9 +130,16 @@ STATIC_ROOT = './static/'
 # Instead of sending out real email, during development the emails will be sent
 # to stdout, where from they can be inspected.
 if DEBUG:
-    EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-    EMAIL_PORT = config('EMAIL_PORT', default=1025, cast=int)
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#     EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+#     EMAIL_PORT = config('EMAIL_PORT', default=1025, cast=int)
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'your_gamil_here'
+    EMAIL_HOST_PASSWORD = 'your_app_password_here' # You have to use the app password genrated after enabling 2-step verification not your gmail password
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = 'VMS Team <noreply@VMSteam.com>'
 
 LOGIN_REDIRECT_URL = reverse_lazy('home:index')
 RECOVER_ONLY_ACTIVE_USERS = False
